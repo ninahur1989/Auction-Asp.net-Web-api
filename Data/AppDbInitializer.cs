@@ -1,4 +1,5 @@
 ﻿using MarketPlace.Models;
+using MarketPlace.Data.Enums;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -44,100 +45,104 @@ namespace MarketPlace.Data
 
                 if (!context.Sales.Any())
                 {
-                    context.Sales.AddRange(new List<Sale>()
+                    Random random = new Random();
+                    for (int i = 0; i < 23; i++)
                     {
-                        new Sale()
+                        context.Sales.AddRange(new List<Sale>()
                         {
-                            Buyer = "i",
-                            Seller = "you",
-                            CreatedDt = DateTime.Today,
-                            FinishedDt = DateTime.Today.AddDays(1),
-                            Item = new Item()
+                            new Sale()
                             {
-                                Description = "some",
-                                Metadata = "dsd",
-                                Name = "Apple"
+                                Buyer = "i",
+                                Seller = "you",
+                                CreatedDt = DateTime.Today,
+                                FinishedDt = DateTime.Today.AddDays(1),
+                                Item = new Item()
+                                {
+                                    Description = "some",
+                                    Metadata = "dsd",
+                                    Name = "Apple"
+                                },
+                                Price = 113.333M + random.Next(1, 10000),
+                                Status = MarketStatus.None
                             },
-                            Price = 113.333M,
-                            Status = Models.Enums.MarketStatus.Active
-                        },
-                        new Sale()
-                        {
-                            Buyer = "Stas",
-                            Seller = "Max",
-                            CreatedDt = DateTime.Today,
-                            FinishedDt = DateTime.Today.AddDays(3),
-                            Item = new Item()
+                            new Sale()
                             {
-                                Description = "true",
-                                Metadata = "gfdg",
-                                Name = "phone"
+                                Buyer = "Stas",
+                                Seller = "Max",
+                                CreatedDt = DateTime.Today,
+                                FinishedDt = DateTime.Today.AddDays(3),
+                                Item = new Item()
+                                {
+                                    Description = "true",
+                                    Metadata = "gfdg",
+                                    Name = "phone"
+                                },
+                                Price = 112.33M + random.Next(1, 10000),
+                                Status = MarketStatus.Canceled
                             },
-                            Price = 112.33M,
-                            Status = Models.Enums.MarketStatus.Canceled
-                        },
-                        new Sale()
-                        {
-                            Buyer = "jon",
-                            Seller = "Marry",
-                            CreatedDt = DateTime.Today,
-                            FinishedDt = DateTime.Today.AddDays(2),
-                            Item = new Item()
+                            new Sale()
                             {
-                                Description = "some",
-                                Metadata = "facebook",
-                                Name = "Window"
+                                Buyer = "jon",
+                                Seller = "Marry",
+                                CreatedDt = DateTime.Today,
+                                FinishedDt = DateTime.Today.AddDays(2),
+                                Item = new Item()
+                                {
+                                    Description = "some",
+                                    Metadata = "facebook",
+                                    Name = "Window"
+                                },
+                                Price = 92.331M + random.Next(1, 10000),
+                                Status = MarketStatus.Finished
                             },
-                            Price = 92.331M,
-                            Status = Models.Enums.MarketStatus.Finished
-                        },
-                        new Sale()
-                        {
-                            Buyer = "i",
-                            Seller = "you",
-                            CreatedDt = DateTime.Today,
-                            FinishedDt = DateTime.Today.AddDays(13),
-                            Item = new Item()
+                            new Sale()
                             {
-                                Description = "some",
-                                Metadata = "dsd",
-                                Name = "Apple"
+                                Buyer = "i",
+                                Seller = "you",
+                                CreatedDt = DateTime.Today,
+                                FinishedDt = DateTime.Today.AddDays(13),
+                                Item = new Item()
+                                {
+                                    Description = "some",
+                                    Metadata = "dsd",
+                                    Name = "Apple"
+                                },
+                                Price = 43.333M + random.Next(1, 10000),
+                                Status = MarketStatus.Active
                             },
-                            Price = 43.333M,
-                            Status = Models.Enums.MarketStatus.Active
-                        },
-                        new Sale()
-                        {
-                            Buyer = "Stas",
-                            Seller = "Max",
-                            CreatedDt = DateTime.Today,
-                            FinishedDt = DateTime.Today.AddDays(10),
-                            Item = new Item()
+                            new Sale()
                             {
-                                Description = "true",
-                                Metadata = "gfdg",
-                                Name = "phone"
+                                Buyer = "Stas",
+                                Seller = "Max",
+                                CreatedDt = DateTime.Today,
+                                FinishedDt = DateTime.Today.AddDays(10),
+                                Item = new Item()
+                                {
+                                    Description = "true",
+                                    Metadata = "gfdg",
+                                    Name = "phone"
+                                },
+                                Price = 1142.33M + random.Next(1, 10000),
+                                Status = MarketStatus.Canceled
                             },
-                            Price = 1142.33M,
-                            Status = Models.Enums.MarketStatus.Canceled
-                        },
-                        new Sale()
-                        {
-                            Buyer = "jon",
-                            Seller = "Marry",
-                            CreatedDt = DateTime.Today,
-                            FinishedDt = DateTime.Today.AddDays(24),
-                            Item = new Item()
+                            new Sale()
                             {
-                                Description = "some",
-                                Metadata = "facebook",
-                                Name = "Window"
-                            },
-                            Price = 912.331M,
-                            Status = Models.Enums.MarketStatus.Finished
-                        }
-                    });
-                    context.SaveChanges();
+                                Buyer = "jon",
+                                Seller = "Marry",
+                                CreatedDt = DateTime.Today,
+                                FinishedDt = DateTime.Today.AddDays(24),
+                                Item = new Item()
+                                {
+                                    Description = "some",
+                                    Metadata = "facebook",
+                                    Name = "Window"
+                                },
+                                Price = 912.331M + random.Next(1, 10000),
+                                Status = MarketStatus.Finished
+                            }
+                        });
+                        context.SaveChanges();
+                    }
                 }
             }
         }

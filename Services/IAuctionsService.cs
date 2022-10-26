@@ -1,14 +1,15 @@
-﻿using MarketPlace.Data.Base;
+﻿
+using MarketPlace.Data.Enums;
 using MarketPlace.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace MarketPlace.Services
 {
-    public interface IAuctionsService : IEntityBaseRepository<Sale>
+    public interface IAuctionsService
     {
-        Task<Sale> GetSaleAsync(int id);
+        Sale GetSale(int id);
 
-        Task<List<Sale>> GetAllSalesAsync();
+        PagedList<Sale> GetAllSales(int? page, int? limit, string? name, string? seller, MarketStatus? status);
     }
 }

@@ -1,9 +1,8 @@
-﻿using MarketPlace.Data.Base;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace MarketPlace.Models
 {
-    public class Item : IEntityBase
+    public class Item
     {
         [Key]
         public int Id { get; set; }

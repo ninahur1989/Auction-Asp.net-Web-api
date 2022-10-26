@@ -66,6 +66,10 @@
               "target": "Package",
               "version": "[5.0.17, )"
             },
+            "Microsoft.EntityFrameworkCore.Proxies": {
+              "target": "Package",
+              "version": "[5.0.17, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[5.0.17, )"
@@ -75,6 +79,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[5.0.17, )"
+            },
+            "Sieve": {
+              "target": "Package",
+              "version": "[3.0.0-beta0015, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",

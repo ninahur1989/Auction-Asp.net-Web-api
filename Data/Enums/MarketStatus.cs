@@ -1,4 +1,4 @@
-﻿namespace MarketPlace.Models.Enums
+﻿namespace MarketPlace.Data.Enums
 {
     public enum MarketStatus
     {

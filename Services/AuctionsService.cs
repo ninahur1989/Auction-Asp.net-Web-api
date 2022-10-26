@@ -2,38 +2,53 @@
 using MarketPlace.Models;
 using System.Threading.Tasks;
 using System.Linq;
-using MarketPlace.Data.Base;
 using System.Collections.Generic;
-using MarketPlace.Models.Enums;
 using MarketPlace.Data.Enums;
 
 namespace MarketPlace.Services
 {
-    public class AuctionsService : EntityBaseRepository<Sale>/*, IAuctionsService*/
+    public class AuctionsService : IAuctionsService
     {
-        public AuctionsService(ApplicationContext context) : base(context)
+        private readonly ApplicationContext _context;
+        public AuctionsService(ApplicationContext context)
         {
+            _context = context;
         }
 
-        public async Task<Sale> GetSaleAsync(int id)
+
+        public Sale GetSale(int id)
         {
-            var item = await GetByIdAsync(id, x => x.Item);
+            var item = _context.Sales.FirstOrDefault(x => x.Item.Id == id);
             return item;
         }
 
-        public async Task<List<Sale>> GetAllSalesAsync(string? name, string? seller, MarketStatus? status, SortTypeOrder? sort_order, SortTypeKeys? sort_key)
+        public PagedList<Sale> GetAllSales(int? page, int? limit, string? name, string? seller, MarketStatus? status)
         {
-            if (status == null)
+            if (page < 1 || page == null)
             {
-                status = MarketStatus.None;
+                page = 1;
+            }
+            if (limit < 1 || limit == null)
+            {
+                limit = 10;
             }
 
-            var items = await GetAllAsync(x => x.Item.Name.Contains(name) && x.Status == status && x.Seller.StartsWith(seller));
+            name = name ?? string.Empty;
+            seller = seller ?? string.Empty;
 
 
-
-
-            return (List<Sale>)items;
+            if (status == null)
+            {
+                var sales = _context.Sales.Where(x => x.Item.Name.Contains(name) && x.Seller.StartsWith(seller)).Skip((int)((page - 1) * limit)).Take((int)limit).ToList();
+                var pagedSales = PagedList<Sale>.ToPagedList(sales, (int)page, (int)limit, _context.Sales.Count());
+                return pagedSales;
+            }
+            else
+            {
+                var sales = _context.Sales.Where(x => x.Item.Name.Contains(name) && x.Status == status && x.Seller.StartsWith(seller)).Skip((int)((page - 1) * limit)).Take((int)limit).ToList();
+                var pagedSales = PagedList<Sale>.ToPagedList(sales, (int)page, (int)limit, _context.Sales.Count());
+                return pagedSales;
+            }
         }
     }
 }
