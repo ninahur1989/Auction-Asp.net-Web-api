@@ -15,12 +15,10 @@ namespace MarketPlace.Models
         [ForeignKey("ItemId")]
         public virtual Item Item { get; set; }
 
-        [Sieve(CanFilter = true, CanSort = true)]
         public DateTime CreatedDt { get; set; }
 
         public DateTime FinishedDt { get; set; }
 
-        [Sieve(CanFilter = true, CanSort = true)]
         public decimal Price { get; set; }
 
         public MarketStatus Status { get; set; }

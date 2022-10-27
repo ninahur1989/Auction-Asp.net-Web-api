@@ -17,36 +17,10 @@ namespace MarketPlace.Data
                 var context = serviceScope.ServiceProvider.GetService<ApplicationContext>();
                 context.Database.EnsureCreated();
 
-                //if (!context.Items.Any())
-                //{
-                //    context.Items.AddRange(new List<Item>()
-                //    {
-                //        new Item()
-                //        {
-                //            Description = "some",
-                //            Metadata = "dsd",
-                //            Name = "Apple"
-                //        },
-                //        new Item()
-                //        {
-                //            Description = "true",
-                //            Metadata = "gfdg",
-                //            Name = "phone"
-                //        },
-                //        new Item()
-                //        {
-                //            Description = "some",
-                //            Metadata = "facebook",
-                //            Name = "Window"
-                //        }
-                //    });
-                //    context.SaveChanges();
-                //}
-
                 if (!context.Sales.Any())
                 {
                     Random random = new Random();
-                    for (int i = 0; i < 23; i++)
+                    for (int i = 0; i < 100; i++)
                     {
                         context.Sales.AddRange(new List<Sale>()
                         {
@@ -54,8 +28,8 @@ namespace MarketPlace.Data
                             {
                                 Buyer = "i",
                                 Seller = "you",
-                                CreatedDt = DateTime.Today,
-                                FinishedDt = DateTime.Today.AddDays(1),
+                                CreatedDt = DateTime.Today.AddDays(15),
+                                FinishedDt = DateTime.Today.AddDays(20),
                                 Item = new Item()
                                 {
                                     Description = "some",
@@ -63,14 +37,14 @@ namespace MarketPlace.Data
                                     Name = "Apple"
                                 },
                                 Price = 113.333M + random.Next(1, 10000),
-                                Status = MarketStatus.None
+                                Status = (MarketStatus)random.Next(0,4)
                             },
                             new Sale()
                             {
                                 Buyer = "Stas",
                                 Seller = "Max",
-                                CreatedDt = DateTime.Today,
-                                FinishedDt = DateTime.Today.AddDays(3),
+                                CreatedDt = DateTime.Today.AddDays(4),
+                                FinishedDt = DateTime.Today.AddDays(7),
                                 Item = new Item()
                                 {
                                     Description = "true",
@@ -78,14 +52,14 @@ namespace MarketPlace.Data
                                     Name = "phone"
                                 },
                                 Price = 112.33M + random.Next(1, 10000),
-                                Status = MarketStatus.Canceled
+                                Status = (MarketStatus)random.Next(0,4)
                             },
                             new Sale()
                             {
                                 Buyer = "jon",
                                 Seller = "Marry",
-                                CreatedDt = DateTime.Today,
-                                FinishedDt = DateTime.Today.AddDays(2),
+                                CreatedDt = DateTime.Today.AddDays(26),
+                                FinishedDt = DateTime.Today.AddDays(33),
                                 Item = new Item()
                                 {
                                     Description = "some",
@@ -93,13 +67,13 @@ namespace MarketPlace.Data
                                     Name = "Window"
                                 },
                                 Price = 92.331M + random.Next(1, 10000),
-                                Status = MarketStatus.Finished
+                                Status = (MarketStatus)random.Next(0,4)
                             },
                             new Sale()
                             {
                                 Buyer = "i",
                                 Seller = "you",
-                                CreatedDt = DateTime.Today,
+                                CreatedDt = DateTime.Today.AddDays(10),
                                 FinishedDt = DateTime.Today.AddDays(13),
                                 Item = new Item()
                                 {
@@ -108,13 +82,13 @@ namespace MarketPlace.Data
                                     Name = "Apple"
                                 },
                                 Price = 43.333M + random.Next(1, 10000),
-                                Status = MarketStatus.Active
+                                Status = (MarketStatus)random.Next(0,4)
                             },
                             new Sale()
                             {
                                 Buyer = "Stas",
                                 Seller = "Max",
-                                CreatedDt = DateTime.Today,
+                                CreatedDt = DateTime.Today.AddDays(4),
                                 FinishedDt = DateTime.Today.AddDays(10),
                                 Item = new Item()
                                 {
@@ -123,13 +97,13 @@ namespace MarketPlace.Data
                                     Name = "phone"
                                 },
                                 Price = 1142.33M + random.Next(1, 10000),
-                                Status = MarketStatus.Canceled
+                                Status = (MarketStatus)random.Next(0,4)
                             },
                             new Sale()
                             {
                                 Buyer = "jon",
                                 Seller = "Marry",
-                                CreatedDt = DateTime.Today,
+                                CreatedDt = DateTime.Today.AddDays(1),
                                 FinishedDt = DateTime.Today.AddDays(24),
                                 Item = new Item()
                                 {
@@ -138,7 +112,7 @@ namespace MarketPlace.Data
                                     Name = "Window"
                                 },
                                 Price = 912.331M + random.Next(1, 10000),
-                                Status = MarketStatus.Finished
+                                Status = (MarketStatus)random.Next(0,4)
                             }
                         });
                         context.SaveChanges();

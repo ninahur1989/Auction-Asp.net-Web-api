@@ -10,13 +10,13 @@ namespace MarketPlace.Services
     public class AuctionsService : IAuctionsService
     {
         private readonly ApplicationContext _context;
+
         public AuctionsService(ApplicationContext context)
         {
             _context = context;
         }
 
-
-        public Sale GetSale(int id)
+        public Sale GetSaleById(int id)
         {
             var item = _context.Sales.FirstOrDefault(x => x.Item.Id == id);
             return item;
@@ -35,7 +35,6 @@ namespace MarketPlace.Services
 
             name = name ?? string.Empty;
             seller = seller ?? string.Empty;
-
 
             if (status == null)
             {
