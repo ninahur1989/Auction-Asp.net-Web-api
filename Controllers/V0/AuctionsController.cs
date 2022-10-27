@@ -23,7 +23,7 @@ namespace MarketPlace.Controllers.V0
         }
 
         //for swagger
-        [HttpGet("catalog-items")]
+        //[HttpGet("catalog-items")]
         public PagedList<Sale> Index(int? page, int? limit, string? name, string? seller, MarketStatus? status, SortTypeOrder? sort_order, SortTypeKeys? sort_key)
         {
             _logger.LogInformation("entered to Index");
